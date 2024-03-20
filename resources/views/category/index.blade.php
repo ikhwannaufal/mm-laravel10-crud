@@ -7,7 +7,7 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <div class="card bg-dark text-light">
                     <div class="card-header">
                         <h4>Categories
                             <a href="{{url('categories/create')}}" class="btn btn-primary float-end">Add Category</a>
@@ -15,7 +15,7 @@
                     </div>
                     <div class="card-body">
                         {{-- {{$categories}} --}}
-                        <table class="table table-bordered table-striped">
+                        <table class="table table-bordered table-striped table-dark">
                             <thead>
                                 <tr>
                                     <th>ID</th>
