@@ -1,7 +1,7 @@
 <x-app-web-layout>
 
     <x-slot name="title">
-        Edit Categories
+        Edit Workout
     </x-slot>
 
     <div class="container mt-5 text-light">
@@ -9,13 +9,13 @@
             <div class="col-md-12">
 
                 @if (session('status'))
-                    <div class="alert alert-success">{{session('status')}}</div>
+                    <div class="alert alert-warning fw-bold">{{session('status')}}</div>
                 @endif
 
                 <div class="card bg-dark text-light">
                     <div class="card-header">
-                        <h4>Edit Categories
-                            <a href="{{url('categories')}}" class="btn btn-warning float-end">Back</a>
+                        <h4>Edit workout
+                            <a href="{{url('categories')}}" class="btn btn-warning float-end">Back to list</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -23,21 +23,21 @@
                             @csrf
                             @method('PUT')
                             <div class="mb-3">
-                                <label class="text-light">Name</label>
+                                <label class="text-light mb-1">Workout</label>
                                 <input type="text" name="name" class="form-control" value="{{ $category->name }}">
                                 @error('name')
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="text-light">Description</label>
+                                <label class="text-light mb-1">Weight</label>
                                 <textarea name="description" class="form-control" rows="3">{{ $category->description }}</textarea>
                                 @error('description')
                                     <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="text-light">Is Active</label>
+                                <label class="text-light">Completed</label>
                                 <input type="checkbox" name="is_active" {{$category->is_active == true ? 'checked' : ''}}>
                                 @error('is_active')
                                     <span class="text-danger">{{$message}}</span>

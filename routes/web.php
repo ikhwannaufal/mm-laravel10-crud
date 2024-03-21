@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('frontend.index');
 });
+Route::get('/rest', function () {
+    return view('frontend.rest');
+});
 
 Route::get('categories',[CategoryController::class, 'index']);
 Route::get('categories/create',[CategoryController::class, 'create']);

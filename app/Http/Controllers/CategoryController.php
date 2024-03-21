@@ -4,13 +4,25 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
-    public function index() {
-        $categories = Category::get();
-        // dd($categories);
-        return view('category.index', compact('categories'));
+    public function index(Request $request) {
+        $search = $request->input('search');
+
+        //Query to fetch categories
+        $query = Category::query();
+
+        // Apply search filter if search term is provided
+        if ($search) {
+            $query->where(DB::raw("LOWER(name)"), 'LIKE', '%' . strtolower($search) . '%')
+            ->orWhere(DB::raw("LOWER(description)"), 'LIKE', '%' . strtolower($search) . '%');
+        }
+
+        // Fetch categories
+        $categories = $query->get();
+        return view('category.index', compact('categories','search'));
     }
 
     public function create() {
@@ -30,7 +42,7 @@ class CategoryController extends Controller
             'is_active' => $request->is_active == true ? 1 : 0,
         ]);
 
-        return redirect('categories/create')->with('status','Category Created');
+        return redirect('categories/create')->with('status','Workout Added Big Guy!');
     }
 
     public function edit(int $id) {
@@ -52,13 +64,13 @@ class CategoryController extends Controller
             'is_active' => $request->is_active == true ? 1 : 0,
         ]);
 
-        return redirect()->back()->with('status','Category Updated');
+        return redirect()->back()->with('status','Workout Updated You Beast!');
     }
 
     public function destroy(int $id) {
         $category = Category::findOrFail($id);
         $category->delete();
 
-        return redirect()->back()->with('status','Category Deleted');
+        return redirect()->back()->with('status','Workout Deleted');
     }
 }
