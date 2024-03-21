@@ -26,7 +26,7 @@
         }
         svg text {
             text-transform: uppercase;
-            animation: stroke 5s infinite alternate;
+            animation: stroke 4s forwards alternate;
             stroke-width: 2;
             stroke: #000000;
             font-size: 120px;

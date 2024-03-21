@@ -12,7 +12,7 @@ class CategoryController extends Controller
         $search = $request->input('search');
 
         //Query to fetch categories
-        $query = Category::query();
+        $query = Category::query()->orderBy('is_active');
 
         // Apply search filter if search term is provided
         if ($search) {
